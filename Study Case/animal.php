@@ -19,20 +19,32 @@ class Hewan{
     
   //membuat Destructor untuk Hewan
     public function __destruct(){
-            //otomatis akan melakukan ini ketika object tersebut dihapus
-            echo "<br> Object $this->namaHewan telah dihapus";
+        //otomatis akan melakukan ini ketika object tersebut dihapus
+        echo "<br> Object $this->namaHewan telah dihapus";
         }
 
     public function getData(){
-         return "$this->namaHewan, $this->jenisKelamin, $this->jumlahKaki, $this->jenisPemakan";
+         return "$this->jenisKelamin, $this->jumlahKaki, $this->jenisPemakan";
     }
 }
+
+  //membuat class untuk mencoba Object Type
+  class getInfoHewan{
+    //parameter object khusus untuk class Hewan
+    public function getInfo(Hewan $object){
+      return "{$object->namaHewan}, {$object->getData()}";
+    }
+
+  }
  
 //membuat object dari class Hewan menggunakan Constructor
 $rusa = new Hewan("Rusa", "Jantan", 4, "Herbivora");
-echo "Info hewan pertama: ", $rusa->getData();
 
-//menghapus object rusa untuk melihat Destructor berjalan
+$pencetakInfo = new getInfoHewan();
+
+//mencetak data sekaligus mengolah data object rusa 
+echo $pencetakInfo->getInfo($rusa);
+
 unset($rusa);
  
 ?>
